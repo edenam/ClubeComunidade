@@ -3,6 +3,7 @@ package eden.com.br.clubecomunidade.adapter;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -22,7 +23,6 @@ import java.util.List;
 
 import eden.com.br.clubecomunidade.R;
 import eden.com.br.clubecomunidade.bean.News;
-import eden.com.br.clubecomunidade.fragment.MainFragment;
 import eden.com.br.clubecomunidade.fragment.NewsDetailFragment;
 import eden.com.br.clubecomunidade.interfaces.OnFragmentInteractionListener;
 
@@ -32,15 +32,15 @@ public class ImageSlideAdapter extends PagerAdapter {
     private ImageLoadingListener imageListener;
     FragmentActivity activity;
     List<News> news;
-    MainFragment mainFragment;
+    Fragment fragment;
 
     private OnFragmentInteractionListener mListener;
 
     public ImageSlideAdapter(FragmentActivity activity, List<News> news,
-                             MainFragment mainFragment, OnFragmentInteractionListener mListener) {
+                             Fragment fragment, OnFragmentInteractionListener mListener) {
 
         this.activity = activity;
-        this.mainFragment = mainFragment;
+        this.fragment = fragment;
         this.news = news;
         this.mListener = mListener;
 

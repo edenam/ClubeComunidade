@@ -90,31 +90,31 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey("content")) {
                 String content = savedInstanceState.getString("content");
-                if (content.equals(newsDetailFragment.ARG_ITEM_ID)) {
+                if (content.equals(newsDetailFragment.FRAGMENT_TAG)) {
                     if (fragmentManager
-                            .findFragmentByTag(newsDetailFragment.ARG_ITEM_ID) != null) {
+                            .findFragmentByTag(newsDetailFragment.FRAGMENT_TAG) != null) {
                         contentFragment = fragmentManager
-                                .findFragmentByTag(newsDetailFragment.ARG_ITEM_ID);
+                                .findFragmentByTag(newsDetailFragment.FRAGMENT_TAG);
                     }
                 }
             }
-            if (fragmentManager.findFragmentByTag(MainFragment.ARG_ITEM_ID) != null) {
+            if (fragmentManager.findFragmentByTag(MainFragment.FRAGMENT_TAG) != null) {
                 mainFragment = (MainFragment) fragmentManager
-                        .findFragmentByTag(MainFragment.ARG_ITEM_ID);
+                        .findFragmentByTag(MainFragment.FRAGMENT_TAG);
                 contentFragment = mainFragment;
             }
         } else {
             mainFragment = new MainFragment();
-            switchContent(mainFragment, MainFragment.ARG_ITEM_ID);
+            switchContent(mainFragment, MainFragment.FRAGMENT_TAG);
         }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (contentFragment instanceof MainFragment) {
-            outState.putString("content", MainFragment.ARG_ITEM_ID);
+            outState.putString("content", MainFragment.FRAGMENT_TAG);
         } else {
-            outState.putString("content", NewsDetailFragment.ARG_ITEM_ID);
+            outState.putString("content", NewsDetailFragment.FRAGMENT_TAG);
         }
         super.onSaveInstanceState(outState);
     }
@@ -219,13 +219,16 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             switch(position) {
                 case 0:
 
-                    if (fragmentToDisplay == null)
-                        return MainFragment.newInstance(position + 1);
-                    else {
+                    if (fragmentToDisplay instanceof NewsDetailFragment) {
+
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                        ft.addToBackStack(MainFragment.ARG_ITEM_ID);
+                        ft.addToBackStack( ((NewsDetailFragment) fragmentToDisplay).FRAGMENT_TAG );
                         ft.commit();
+
                         return fragmentToDisplay;
+
+                    } else {
+                        return new MainFragment();
                     }
 
                 case 1:

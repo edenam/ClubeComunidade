@@ -40,7 +40,7 @@ public class NewsDetailFragment extends Fragment {
 
     News news;
 
-    public static final String ARG_ITEM_ID = "pdt_detail_fragment";
+    public static final String FRAGMENT_TAG = "news_detail_fragment";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
