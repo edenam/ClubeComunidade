@@ -14,11 +14,11 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.parse.Parse;
+import com.parse.ParseCrashReporting;
 
 public class AppData extends Application {
     public static final boolean DEVELOPER_MODE = false;
 
-    @SuppressWarnings("unused")
     public void onCreate() {
         super.onCreate();
         if (DEVELOPER_MODE
@@ -29,9 +29,14 @@ public class AppData extends Application {
                     .detectAll().penaltyDeath().build());
         }
 
-        // parse.com implementation
+        /**
+         * parse.com implementation
+         */
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
+        // Enable Crash Reporting
+        ParseCrashReporting.enable(this);
+        // Initializa Parse resources
         Parse.initialize(this, "HsR7qv4fXc8HxTw918ZuCkbIvVdxozNCpvIHj4KE", "CUv9wUNhT6WinQeLSOORTA59D59oyo3faGzcU0kN");
 
         initImageLoader(getApplicationContext());
