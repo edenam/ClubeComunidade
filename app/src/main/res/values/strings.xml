@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Clube Comunidade</string>
+
+
+    <string name="title_section1">Principal</string>
+    <string name="title_section2">Notícias</string>
+    <string name="title_section3">Guia Comercial</string>
+    <string name="title_section4">Eventos</string>
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="product_name">Product Name</string>
+    <string name="txt_image_slider">Image Slideshow</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="time_out">Time Out</string>
+    <string name="error_occured">Error Occurred</string>
+
+</resources>
