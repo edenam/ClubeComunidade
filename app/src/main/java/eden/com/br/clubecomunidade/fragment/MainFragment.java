@@ -48,7 +48,7 @@ public class MainFragment extends Fragment {
         // Incluindo o fragment do banner de noticias
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
         ft.replace(R.id.banner_news_container, new BannerNewsFragment(), BannerNewsFragment.FRAGMENT_TAG);
-//        ft.replace(R.id.events_with_pics_container, new EventsWithPicsFragment(), EventsWithPicsFragment.FRAGMENT_TAG);
+        ft.replace(R.id.events_with_pics_container, new EventsWithPicsFragment(), EventsWithPicsFragment.FRAGMENT_TAG);
 //        ft.replace(R.id.guide_with_pics, new GuideWithPicsFragment(), EventsWithPicsFragment.FRAGMENT_TAG);
         ft.addToBackStack(null);
         ft.commit();

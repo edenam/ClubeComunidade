@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import java.util.Locale;
 
+import eden.com.br.clubecomunidade.fragment.BlankFragment;
 import eden.com.br.clubecomunidade.fragment.HelloAppFragment;
 import eden.com.br.clubecomunidade.fragment.MainFragment;
 import eden.com.br.clubecomunidade.fragment.NewsDetailFragment;
@@ -146,7 +147,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void onBackPressed() {
         FragmentManager fm = getSupportFragmentManager();
 
-        if (fm.getBackStackEntryCount() > 0 && this.fragmentToDisplay instanceof NewsDetailFragment) {
+        if (fm.getBackStackEntryCount() > 0 &&
+            (this.fragmentToDisplay instanceof NewsDetailFragment
+            || this.fragmentToDisplay instanceof HelloAppFragment)) {
 
             mViewPager.getAdapter().notifyDataSetChanged();
 
@@ -222,7 +225,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     if (fragmentToDisplay instanceof NewsDetailFragment) {
 
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                        ft.addToBackStack( ((NewsDetailFragment) fragmentToDisplay).FRAGMENT_TAG );
+                        ft.addToBackStack(((NewsDetailFragment) fragmentToDisplay).FRAGMENT_TAG);
+                        ft.commit();
+
+                        return fragmentToDisplay;
+
+                    }else if(fragmentToDisplay instanceof HelloAppFragment) {
+
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                        ft.addToBackStack( ((HelloAppFragment) fragmentToDisplay).FRAGMENT_TAG );
                         ft.commit();
 
                         return fragmentToDisplay;
@@ -231,15 +242,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                         return new MainFragment();
                     }
 
-                case 1:
-                    return new HelloAppFragment();
-
-                case 101:
-                    // NewsDetailFragment com Bundle arguments
-                    //return fragmentToDisplay;
-
                 default:
-                    return new NewsDetailFragment();
+                    return new BlankFragment();
 
             }
 
@@ -254,14 +258,23 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         @Override
         public int getItemPosition(Object object){
 
-            if(object instanceof MainFragment && fragmentToDisplay instanceof NewsDetailFragment) {
+            if(object instanceof MainFragment &&
+                    (fragmentToDisplay instanceof NewsDetailFragment
+                    || fragmentToDisplay instanceof HelloAppFragment)) {
+
                 this.notifyDataChanged = true;
                 return POSITION_NONE;
+
             }else if(object instanceof NewsDetailFragment && fragmentToDisplay instanceof NewsDetailFragment) {
                 this.notifyDataChanged = true;
                 fragmentToDisplay = null;
                 return POSITION_NONE;
-            }else {
+            }else if(object instanceof HelloAppFragment && fragmentToDisplay instanceof HelloAppFragment) {
+                this.notifyDataChanged = true;
+                fragmentToDisplay = null;
+                return POSITION_NONE;
+
+            }else{
                 return super.getItemPosition(object);
             }
 
@@ -270,9 +283,18 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         @Override
         public long getItemId(int position) {
 
-            if(notifyDataChanged && ((fragmentToDisplay == null) || (position == 0 && fragmentToDisplay instanceof NewsDetailFragment))){
+            if(notifyDataChanged && ((fragmentToDisplay == null) ||
+            (position == 0 && fragmentToDisplay instanceof NewsDetailFragment))){
+
                 notifyDataChanged = false;
                 return ++incrementalDataChanged;
+
+            }else if(notifyDataChanged && ((fragmentToDisplay == null) ||
+            (position == 0 && fragmentToDisplay instanceof HelloAppFragment))){
+
+                notifyDataChanged = false;
+                return ++incrementalDataChanged;
+
             }
 
             return super.getItemId(position);

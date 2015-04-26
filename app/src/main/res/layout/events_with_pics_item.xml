@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:padding="2dp"
+    android:gravity="center|center_vertical"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp">
+
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/events_item_pic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+    />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_toRightOf="@id/events_item_pic"
+        android:layout_toEndOf="@id/events_item_pic"
+        android:layout_width="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Show do Metallica!"
+            android:id="@+id/events_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            style="@style/events_listing_title"
+         />
+
+        <TextView
+            android:text="14/09/2022"
+            android:id="@+id/events_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/events_listing_other" />
+
+        <TextView
+            android:text="14/09/2022"
+            android:id="@+id/events_item_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/events_listing_other" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/div_bb"
+        android:layout_marginTop="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@+id/events_item_pic"
+        android:background="@color/view_divider_color_2" />
+
+</RelativeLayout>

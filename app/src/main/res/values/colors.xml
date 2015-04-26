@@ -6,4 +6,7 @@
     <color name="view_divider_color_2">#DADADA</color>
     <color name="sliding_list_divider_color">#1f74ad</color>
 
+    <color name="events_list_divider_color">#FFA500</color>
+    <color name="events_list_divider_color_gray">#878787</color>
+
 </resources>

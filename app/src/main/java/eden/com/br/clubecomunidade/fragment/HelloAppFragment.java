@@ -18,6 +18,7 @@ import eden.com.br.clubecomunidade.interfaces.OnFragmentInteractionListener;
  */
 public class HelloAppFragment extends Fragment {
 
+    public static final String FRAGMENT_TAG = "hello_app_fragment";
     private OnFragmentInteractionListener mListener;
 
     public HelloAppFragment() {
