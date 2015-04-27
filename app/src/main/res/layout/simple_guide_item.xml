@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/simple_guide_border">
+
+    <TextView android:id="@+id/guide_item_name"
+        android:gravity="center_horizontal|center|center_vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Administradora Passárgada"
+        style="@style/guide_simple_listing_title"/>
+
+    <TextView android:id="@+id/guide_item_address"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Rua dois, numero 1101"
+        style="@style/guide_listing_other"/>
+
+    <TextView android:id="@+id/guide_item_telephones"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="2422-1212 / 99330-2211"
+        style="@style/guide_listing_other"/>
+
+    <TextView android:id="@+id/guide_item_category"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Administradora de Imóveis"
+        style="@style/guide_listing_other"/>
+
+</LinearLayout>

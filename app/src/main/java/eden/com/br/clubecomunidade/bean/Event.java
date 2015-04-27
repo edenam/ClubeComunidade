@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by root on 25/04/15.
  */
-public class Events {
+public class Event {
 
     private String name;
     private String description;
@@ -15,8 +15,8 @@ public class Events {
     private String price;
     private String obs;
 
-    public Events(String name, String description, Date date, String imageUrl,
-                  String place, String price, String obs){
+    public Event(String name, String description, Date date, String imageUrl,
+                 String place, String price, String obs){
 
 
         this.name = name;
@@ -28,11 +28,11 @@ public class Events {
         this.obs = obs;
     }
 
-    public Events(String name, Date date, String imageUrl){
+    public Event(String name, Date date, String imageUrl){
         this(name, "", date, imageUrl, "", "", "");
     }
 
-    public Events(){ }
+    public Event(){ }
 
     public String getName() {
         return name;

@@ -39,7 +39,11 @@ public class DAO {
         ParseDAO.getInstance().getNewsForHomeBanner(count, callback);
     }
 
-    public void getEventsWithPics(int qtd, final DAOAccessCallback callback){
-        ParseDAO.getInstance().getEventsWithPics(qtd, callback);
+    public void getEventsWithPics(int count, final DAOAccessCallback callback){
+        ParseDAO.getInstance().getEventsWithPics(count, callback);
+    }
+
+    public void getSimpleGuideList(int count, final DAOAccessCallback callback){
+        ParseDAO.getInstance().getSimpleGuideList(count, callback);
     }
 }

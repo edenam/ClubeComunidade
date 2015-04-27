@@ -9,4 +9,8 @@
     <color name="events_list_divider_color">#FFA500</color>
     <color name="events_list_divider_color_gray">#878787</color>
 
+    <color name="guide_item_title">#009900</color>
+    <color name="guide_item_text">#878787</color>
+    <color name="guide_item_border">#009900</color>
+
 </resources>

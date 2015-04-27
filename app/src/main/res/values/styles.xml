@@ -44,9 +44,22 @@
     </style>
 
     <style name="events_listing_other">
-        <item name="android:textColor">@color/view_divider_color</item>
+        <item name="android:textColor">@color/events_list_divider_color_gray</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="guide_simple_listing_title">
+        <item name="android:textColor">@color/guide_item_title</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textScaleX">1.2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="guide_listing_other">
+        <item name="android:textColor">@color/guide_item_text</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 
     <drawable name="actionbar_background">#1f74ad</drawable>
     <drawable name="tab_unselected">#1f74ad</drawable>

@@ -13,7 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.ArrayList;
 
 import eden.com.br.clubecomunidade.R;
-import eden.com.br.clubecomunidade.bean.Events;
+import eden.com.br.clubecomunidade.bean.Event;
 
 /**
  * Created by root on 25/04/15.
@@ -22,12 +22,12 @@ public class EventsWithPicsAdapter extends BaseAdapter{
 
 
     private final Context context;
-    private final ArrayList<Events> events;
+    private final ArrayList<Event> events;
     private final LayoutInflater mInflater;
     DisplayImageOptions options;
     ImageLoader imageLoader = ImageLoader.getInstance();
 
-    public EventsWithPicsAdapter(Context context, ArrayList<Events> events) {
+    public EventsWithPicsAdapter(Context context, ArrayList<Event> events) {
 
         this.context = context;
         this.events = events;

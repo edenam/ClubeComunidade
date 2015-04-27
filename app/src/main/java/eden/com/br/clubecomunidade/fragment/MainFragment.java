@@ -18,18 +18,6 @@ public class MainFragment extends Fragment {
 
     public static final String FRAGMENT_TAG = "main_fragment";
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-//    public static MainFragment newInstance(int sectionNumber) {
-//        MainFragment fragment = new MainFragment();
-//        Bundle args = new Bundle();
-//        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-
     public MainFragment() {
 
     }
@@ -49,7 +37,7 @@ public class MainFragment extends Fragment {
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
         ft.replace(R.id.banner_news_container, new BannerNewsFragment(), BannerNewsFragment.FRAGMENT_TAG);
         ft.replace(R.id.events_with_pics_container, new EventsWithPicsFragment(), EventsWithPicsFragment.FRAGMENT_TAG);
-//        ft.replace(R.id.guide_with_pics, new GuideWithPicsFragment(), EventsWithPicsFragment.FRAGMENT_TAG);
+        ft.replace(R.id.guide_list_container, new SimpleGuideListFragment(), SimpleGuideListFragment.FRAGMENT_TAG);
         ft.addToBackStack(null);
         ft.commit();
 

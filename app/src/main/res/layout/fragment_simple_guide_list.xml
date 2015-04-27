@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="0dp"
+    tools:context="eden.com.br.clubecomunidade.fragment.SimpleGuideListFragment">
+
+
+    <eden.com.br.clubecomunidade.customviews.MyGridView android:id="@+id/guide_list_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="90dp"
+        android:numColumns="2"
+        android:verticalSpacing="3dp"
+        android:horizontalSpacing="3dp"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+    />
+
+</FrameLayout>

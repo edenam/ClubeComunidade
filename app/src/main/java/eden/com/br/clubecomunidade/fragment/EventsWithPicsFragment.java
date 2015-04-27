@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -20,7 +21,7 @@ import java.util.Locale;
 import eden.com.br.clubecomunidade.DAO.DAO;
 import eden.com.br.clubecomunidade.DAO.DAOAccessCallback;
 import eden.com.br.clubecomunidade.R;
-import eden.com.br.clubecomunidade.bean.Events;
+import eden.com.br.clubecomunidade.bean.Event;
 import eden.com.br.clubecomunidade.interfaces.OnFragmentInteractionListener;
 
 /**
@@ -77,7 +78,13 @@ public class EventsWithPicsFragment extends Fragment {
 
                 if (e == null) {
 
-                    for (Events tempEvent : (List<Events>) events) {
+                    if (rootView != null) {
+                        ProgressBar progressBar = (ProgressBar) rootView.findViewById(R.id.loadingEvents);
+                        if(progressBar != null)
+                            progressBar.setVisibility(View.GONE);
+                    }
+
+                    for (Event tempEvent : (List<Event>) events) {
 
                         View eventItem = inflater.inflate(R.layout.events_with_pics_item, null);
 

@@ -1,36 +1,36 @@
 <ScrollView
+    android:id="@+id/mainScrollView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="2dp"
     android:paddingRight="2dp"
     android:paddingTop="2dp"
     android:paddingBottom="2dp"
+    android:fillViewport="true"
     tools:context="eden.com.br.clubecomunidade.fragment.MainFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <FrameLayout
             android:id="@+id/banner_news_container"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/events_with_pics_container"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </FrameLayout>
 
-<!--
         <FrameLayout
-            android:id="@+id/guide_with_pics"
-            android:layout_width="wrap_content"
+            android:id="@+id/guide_list_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </FrameLayout>
--->
 
     </LinearLayout>
 </ScrollView>

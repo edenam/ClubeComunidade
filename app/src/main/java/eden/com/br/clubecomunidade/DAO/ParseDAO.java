@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import eden.com.br.clubecomunidade.bean.Events;
+import eden.com.br.clubecomunidade.bean.Business;
+import eden.com.br.clubecomunidade.bean.BusinessCategory;
+import eden.com.br.clubecomunidade.bean.Event;
 import eden.com.br.clubecomunidade.bean.News;
 import eden.com.br.clubecomunidade.utils.TagName;
 
@@ -91,8 +93,8 @@ class ParseDAO {
 
     public void getEventsWithPics(int qtd, final DAOAccessCallback callback) {
 
-        ArrayList<Events> returningEvents = new ArrayList<Events>();
-        Events event;
+        ArrayList<Event> returningEvents = new ArrayList<Event>();
+        Event event;
 
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Events");
@@ -112,13 +114,13 @@ class ParseDAO {
             @Override
             public void done(List<ParseObject> parseEvents, ParseException e) {
 
-                ArrayList<Events> returningEvents = new ArrayList<Events>();
-                Events event;
+                ArrayList<Event> returningEvents = new ArrayList<Event>();
+                Event event;
 
                 for (int i = 0; i < parseEvents.size(); i++) {
 
                     ParseObject eventsObj = parseEvents.get(i);
-                    event = new Events();
+                    event = new Event();
 
                     if (eventsObj.has(TagName.EVENTS_KEY_NAME))
                         event.setName(eventsObj.getString(TagName.EVENTS_KEY_NAME));
@@ -151,5 +153,48 @@ class ParseDAO {
     }
 
 
+    public void getSimpleGuideList(final int count, final DAOAccessCallback callback) {
 
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Businesses");
+
+        query.setLimit(count)
+                .selectKeys(
+                        Arrays.asList("objectId", "name", "address", "telephones", "obs", "category")
+                ).include("category")
+                .orderByDescending("updatedAt");
+
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> parseBusinesses, ParseException e) {
+
+                List<Business> returningBusinesses = new ArrayList<>();
+                Business business;
+
+                for (int i = 0; i < parseBusinesses.size(); i++) {
+
+                    ParseObject businessObj = parseBusinesses.get(i);
+                    business = new Business();
+
+                    business.setObjectId(businessObj.getString(TagName.KEY_BUSINESS_OBJECTID));
+                    business.setName(businessObj.getString(TagName.KEY_BUSINESS_NAME));
+                    business.setAddress(businessObj.getString(TagName.KEY_BUSINESS_ADDRESS));
+                    business.setTelephones(businessObj.getString(TagName.KEY_BUSINESS_TELEPHONES));
+                    business.setObs(businessObj.getString(TagName.KEY_BUSINESS_OBS));
+
+                    BusinessCategory businessCategory = new BusinessCategory();
+                    ParseObject businessCategoryParse = businessObj.getParseObject(TagName.KEY_BUSINESS_CATEGORY);
+                    businessCategory.setObjectId( businessCategoryParse.getObjectId());
+                    businessCategory.setName( businessCategoryParse.getString( TagName.KEY_BUSINESS_CATEGORY_NAME ));
+
+                    business.setCategory(businessCategory);
+
+                    returningBusinesses.add(business);
+                }
+
+                callback.done(returningBusinesses, e);
+
+            }
+        });
+
+    }
 }
