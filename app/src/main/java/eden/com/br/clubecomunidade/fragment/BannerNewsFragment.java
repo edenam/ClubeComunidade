@@ -218,18 +218,21 @@ public class BannerNewsFragment extends Fragment {
 
             DAO.getInstance().getNewsForHomeBanner(NEWS_COUNT_ON_BANNER, new DAOAccessCallback() {
                 @Override
-                public void done(List<?> news, Exception e) {
+                public void done(List<?> newsList, Exception e) {
 
+                    news = (List<News>) newsList;
                     if (news != null && news.size() != 0) {
 
                         imgNameTxt.setText(""
-                                + ((News) news.get(mViewPager
-                                .getCurrentItem())).getHeadLine());
-                        runnable(news.size());
-                        handler.postDelayed(animateViewPager,
-                                ANIM_VIEWPAGER_DELAY);
+                            + (news.get(mViewPager.getCurrentItem())).getHeadLine());
 
-                        mViewPager.setAdapter(new ImageSlideAdapter(activity, (List<News>) news, BannerNewsFragment.this, mListener ));
+                        runnable(news.size());
+
+                        handler.postDelayed(animateViewPager, ANIM_VIEWPAGER_DELAY);
+
+                        mViewPager.setAdapter( new ImageSlideAdapter(
+                                activity, news, BannerNewsFragment.this, mListener )
+                        );
 
                         mIndicator.setViewPager(mViewPager);
 
