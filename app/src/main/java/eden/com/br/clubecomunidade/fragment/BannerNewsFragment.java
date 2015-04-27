@@ -16,7 +16,6 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,25 +23,20 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.Arrays;
 import java.util.List;
 
+import eden.com.br.clubecomunidade.DAO.DAO;
+import eden.com.br.clubecomunidade.DAO.DAOAccessCallback;
 import eden.com.br.clubecomunidade.R;
 import eden.com.br.clubecomunidade.adapter.ImageSlideAdapter;
 import eden.com.br.clubecomunidade.bean.News;
 import eden.com.br.clubecomunidade.interfaces.OnFragmentInteractionListener;
 import eden.com.br.clubecomunidade.json.GetJSONObject;
 import eden.com.br.clubecomunidade.json.JsonReader;
-import eden.com.br.clubecomunidade.parse.ParseReader;
 import eden.com.br.clubecomunidade.utils.CheckNetworkConnection;
 import eden.com.br.clubecomunidade.utils.CirclePageIndicator;
 import eden.com.br.clubecomunidade.utils.PageIndicator;
@@ -57,6 +51,8 @@ public class BannerNewsFragment extends Fragment {
 
     private static final long ANIM_VIEWPAGER_DELAY = 5000;
     private static final long ANIM_VIEWPAGER_DELAY_USER_VIEW = 10000;
+
+    private static final int NEWS_COUNT_ON_BANNER = 5;
 
     // UI References
     private ViewPager mViewPager;
@@ -184,7 +180,7 @@ public class BannerNewsFragment extends Fragment {
             // Fetch data via HTTPCLIENT (Json format)
             // sendRequest();
             // Fetch data via the Parse BAAS
-            getData();
+            populateBanner();
 
         } else {
             mViewPager.setAdapter(new ImageSlideAdapter(activity, news,
@@ -217,63 +213,39 @@ public class BannerNewsFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
-    private void getData() {
+    private void populateBanner() {
         if (CheckNetworkConnection.isConnectionAvailable(activity)) {
-            final WeakReference<Activity> activityWeakRef= new WeakReference<Activity>(activity);
 
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("News");
+            DAO.getInstance().getNewsForHomeBanner(NEWS_COUNT_ON_BANNER, new DAOAccessCallback() {
+                @Override
+                public void done(List<?> news, Exception e) {
 
-            query.whereEqualTo("visible", true);
+                    if (news != null && news.size() != 0) {
 
-            query
-                    .setLimit(5)
-                    .selectKeys(
-                            Arrays.asList("objectId", "headline", "picture")
-                    )
-                    .orderByDescending("updatedAt");
+                        imgNameTxt.setText(""
+                                + ((News) news.get(mViewPager
+                                .getCurrentItem())).getHeadLine());
+                        runnable(news.size());
+                        handler.postDelayed(animateViewPager,
+                                ANIM_VIEWPAGER_DELAY);
 
+                        mViewPager.setAdapter(new ImageSlideAdapter(activity, (List<News>) news, BannerNewsFragment.this, mListener ));
 
-            query.findInBackground(new FindCallback<ParseObject>() {
-                public void done(List<ParseObject> newsList, ParseException e) {
-                    if (e == null) {
+                        mIndicator.setViewPager(mViewPager);
 
-                        news = ParseReader.getNewsForHome(newsList);
-
-                        if (news != null && news.size() != 0) {
-
-                            imgNameTxt.setText(""
-                                    + ((News) news.get(mViewPager
-                                    .getCurrentItem())).getHeadLine());
-                            runnable(news.size());
-                            handler.postDelayed(animateViewPager,
-                                    ANIM_VIEWPAGER_DELAY);
-
-
-                            mViewPager.setAdapter(new ImageSlideAdapter(
-                                    activity, news, BannerNewsFragment.this, mListener ));
-
-                            mIndicator.setViewPager(mViewPager);
-
-                            loadingProgressBar.setVisibility(View.GONE);
+                        loadingProgressBar.setVisibility(View.GONE);
 
 
 
-                        } else {
-
-                            imgNameTxt.setText("No News");
-
-                        }
-
-                        Log.d("Parse", "Parsed: " + news.toString());
-
-                    } else {
-                        Log.d("Parse", "Error: " + e.getMessage());
                     }
                 }
             });
 
 
+
         } else {
+
+            // TODO pensar numa melhor implementação para quando usuário nao estiver conectado
             message = getResources().getString(R.string.no_internet_connection);
             showAlertDialog(message, true);
         }
@@ -304,8 +276,6 @@ public class BannerNewsFragment extends Fragment {
                 });
         alertDialog.show();
     }
-
-
 
     private class RequestImgTask extends AsyncTask<String, Void, List<News>> {
         private final WeakReference<Activity> activityWeakRef;
