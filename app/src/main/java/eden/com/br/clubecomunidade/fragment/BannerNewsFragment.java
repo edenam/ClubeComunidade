@@ -230,9 +230,7 @@ public class BannerNewsFragment extends Fragment {
 
                         handler.postDelayed(animateViewPager, ANIM_VIEWPAGER_DELAY);
 
-                        mViewPager.setAdapter( new ImageSlideAdapter(
-                                activity, news, BannerNewsFragment.this, mListener )
-                        );
+                        mViewPager.setAdapter(new ImageSlideAdapter(activity, news, BannerNewsFragment.this, mListener ));
 
                         mIndicator.setViewPager(mViewPager);
 
