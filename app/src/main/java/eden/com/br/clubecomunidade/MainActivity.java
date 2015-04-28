@@ -92,11 +92,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey("content")) {
                 String content = savedInstanceState.getString("content");
-                if (content.equals(newsDetailFragment.FRAGMENT_TAG)) {
+                if (content.equals(NewsDetailFragment.FRAGMENT_TAG)) {
                     if (fragmentManager
-                            .findFragmentByTag(newsDetailFragment.FRAGMENT_TAG) != null) {
+                            .findFragmentByTag(NewsDetailFragment.FRAGMENT_TAG) != null) {
                         contentFragment = fragmentManager
-                                .findFragmentByTag(newsDetailFragment.FRAGMENT_TAG);
+                                .findFragmentByTag(NewsDetailFragment.FRAGMENT_TAG);
                     }
                 }
             }
