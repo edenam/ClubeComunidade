@@ -1,23 +1,154 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<TableLayout android:id="@+id/simple_guide_table"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="4dp"
-    android:paddingRight="4dp"
-    android:paddingTop="2dp"
-    android:paddingBottom="0dp"
-    tools:context="eden.com.br.clubecomunidade.fragment.SimpleGuideListFragment">
+    android:stretchColumns="*"
+    android:padding="2dp"
+    android:weightSum="2"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TableRow android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_weight="1">
+
+        <LinearLayout android:id="@+id/simple_guide_cell_0"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_margin="2dp"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@drawable/simple_guide_border">
+
+            <TextView android:id="@+id/guide_item_name"
+                android:gravity="center_horizontal|center|center_vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_simple_listing_title"/>
+
+            <TextView android:id="@+id/guide_item_address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+            <TextView android:id="@+id/guide_item_telephones"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+            <TextView android:id="@+id/guide_item_category"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+        </LinearLayout>
 
 
-    <eden.com.br.clubecomunidade.customviews.MyGridView android:id="@+id/guide_list_gridview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnWidth="90dp"
-        android:numColumns="2"
-        android:verticalSpacing="3dp"
-        android:horizontalSpacing="3dp"
-        android:scrollbars="none"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
-    />
+        <LinearLayout android:id="@+id/simple_guide_cell_1"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_margin="2dp"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@drawable/simple_guide_border">
 
-</FrameLayout>
+            <TextView android:id="@+id/guide_item_name"
+                android:gravity="center_horizontal|center|center_vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_simple_listing_title"/>
+
+            <TextView android:id="@+id/guide_item_address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+            <TextView android:id="@+id/guide_item_telephones"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+            <TextView android:id="@+id/guide_item_category"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+        </LinearLayout>
+
+
+    </TableRow>
+
+
+    <TableRow android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout android:id="@+id/simple_guide_cell_2"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_margin="2dp"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@drawable/simple_guide_border">
+
+            <TextView android:id="@+id/guide_item_name"
+                android:gravity="center_horizontal|center|center_vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_simple_listing_title"/>
+
+            <TextView android:id="@+id/guide_item_address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+            <TextView android:id="@+id/guide_item_telephones"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+            <TextView android:id="@+id/guide_item_category"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout android:id="@+id/simple_guide_cell_3"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_margin="2dp"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@drawable/simple_guide_border">
+
+            <TextView android:id="@+id/guide_item_name"
+                android:gravity="center_horizontal|center|center_vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_simple_listing_title"/>
+
+            <TextView android:id="@+id/guide_item_address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+            <TextView android:id="@+id/guide_item_telephones"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+            <TextView android:id="@+id/guide_item_category"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/guide_listing_other"/>
+
+        </LinearLayout>
+
+
+    </TableRow>
+
+
+</TableLayout>

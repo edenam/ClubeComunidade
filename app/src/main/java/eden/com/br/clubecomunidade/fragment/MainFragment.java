@@ -33,7 +33,6 @@ public class MainFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        // Incluindo o fragment do banner de noticias
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
         ft.replace(R.id.banner_news_container, new BannerNewsFragment(), BannerNewsFragment.FRAGMENT_TAG);
         ft.replace(R.id.events_with_pics_container, new EventsWithPicsFragment(), EventsWithPicsFragment.FRAGMENT_TAG);
